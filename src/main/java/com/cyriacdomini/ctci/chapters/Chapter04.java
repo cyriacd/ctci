@@ -1,8 +1,32 @@
 package com.cyriacdomini.ctci.chapters;
 
+import java.util.*;
 import com.cyriacdomini.ctci.types.BinaryTreeNode;
 
 public class Chapter04{
+
+    // Question 3
+    // List of Depths: Given a binary tree, design an algorithm which creates a linked list of all the nodes
+    // at each depth (e.g., if you have a tree with depth 0, you'll have 0 linked lists)
+    public static <T> LinkedList<LinkedList<BinaryTreeNode<T>>> listOfDepths(BinaryTreeNode<T> n){
+        if(n==null){
+            return null;
+        }
+        LinkedList<LinkedList<BinaryTreeNode<T>>> listOfDepths = new LinkedList<>();
+        LinkedList<BinaryTreeNode<T>> currentDepth = new LinkedList<>();
+        currentDepth.add(n);
+        while(!currentDepth.isEmpty()){
+            LinkedList<BinaryTreeNode<T>> nextDepth = new LinkedList<>();
+            for (BinaryTreeNode<T> curTreeNode :currentDepth) {
+                nextDepth.add(curTreeNode.left);
+                nextDepth.add(curTreeNode.right);
+            }
+            listOfDepths.add(currentDepth);
+            currentDepth = nextDepth;
+        }
+        return listOfDepths;
+    }
+
     // Question 4
     // Check Balanced: Implement a function to check if a binary tree is balanced. For the purposes of
     // this question, a balanced tree is defined to be a tree such that the heights of the two subtrees of any

@@ -14,7 +14,7 @@ public class App {
         test.left.right = new BinaryTreeNode<Integer>(5);
         test.left.left.left = new BinaryTreeNode<Integer>(5);
         System.out.println(Chapter04.isBalanced(test));
-        test.left.left.left = null;
+        test.left.left.left = null ;
         System.out.println(Chapter04.isBalanced(test));
     }
 }
