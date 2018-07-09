@@ -5,6 +5,26 @@ import com.cyriacdomini.ctci.types.BinaryTreeNode;
 
 public class Chapter04{
 
+    // Question 2
+    // Minimal Tree: Given a sorted (increasing order) array with unique integer elements, write an algo-
+    // rithm to create a binary search tree with minimal height.
+    // methods involved:
+    // minimalTree
+    // createBSTForMinimalTree
+    public static BinaryTreeNode<Integer> minimalTree(int[] array){
+        return createBSTForMinimalTree(array, 0, array.length-1);
+    }
+    public static BinaryTreeNode<Integer> createBSTForMinimalTree(int[] array, int start, int end){
+        if(end<start){
+            return null;
+        }
+        int mid = (start + end) / 2;
+        BinaryTreeNode<Integer> root = new BinaryTreeNode<Integer>(array[mid]);
+        root.left = createBSTForMinimalTree(array, start, mid-1);
+        root.right = createBSTForMinimalTree(array, mid+1, end);
+        return root;
+    }
+
     // Question 3
     // List of Depths: Given a binary tree, design an algorithm which creates a linked list of all the nodes
     // at each depth (e.g., if you have a tree with depth 0, you'll have 0 linked lists)
