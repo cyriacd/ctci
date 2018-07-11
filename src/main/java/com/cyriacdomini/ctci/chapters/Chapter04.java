@@ -75,4 +75,12 @@ public class Chapter04{
         rDepth = n.right != null ? getMinDepth(n.right) + 1 : 0;
         return Math.min(lDepth ,rDepth);
     }
+
+    public static <T extends Comparable<T>> boolean isBST(BinaryTreeNode<T> n){
+        if(n == null){ return true; }
+        if((n.left != null && n.data.compareTo(n.left.data)<0)||(n.right != null && n.data.compareTo(n.right.data)>=0)){
+            return false;
+        }
+        return (isBST(n.left)&&isBST(n.right));
+    }
 }
